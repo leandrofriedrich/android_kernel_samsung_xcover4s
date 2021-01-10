@@ -27,9 +27,7 @@
 #include <linux/of.h>
 #include <linux/thermal.h>
 #include <linux/cpumask.h>
-
-typedef int (*get_static_t)(cpumask_t *cpumask, int interval,
-			    unsigned long voltage, u32 *power);
+#include <linux/get_static_t.h>
 
 /**
  * struct cpufreq_cooling_device - data for cooling device with cpufreq
