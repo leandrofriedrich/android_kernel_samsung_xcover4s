@@ -24,7 +24,7 @@ void mif_stream_config_serialise(struct mif_stream *stream, struct mxstreamconf 
 	cpacketbuffer_config_serialise(&stream->buffer, &stream_conf->buf_conf);
 }
 
-int mif_stream_init(struct mif_stream *stream, enum scsc_mif_abs_target target, enum MIF_STREAM_DIRECTION direction, uint32_t num_packets, uint32_t packet_size,
+int mif_stream_init(struct mif_stream *stream, unsigned int target, enum MIF_STREAM_DIRECTION direction, uint32_t num_packets, uint32_t packet_size,
 		    struct scsc_mx *mx, enum MIF_STREAM_INTRBIT_TYPE intrbit, mifintrbit_handler tohost_irq_handler, void *data)
 {
 	struct mifintrbit *intr;

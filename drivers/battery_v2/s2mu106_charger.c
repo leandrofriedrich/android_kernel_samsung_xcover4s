@@ -673,7 +673,7 @@ static int s2mu106_chg_set_property(struct power_supply *psy,
 		const union power_supply_propval *val)
 {
 	struct s2mu106_charger_data *charger = power_supply_get_drvdata(psy);
-	enum power_supply_ext_property ext_psp = psp;
+	enum power_supply_ext_property ext_psp = (enum power_supply_ext_property)psp;
 	int buck_state = ENABLE;
 	union power_supply_propval value;
 	int ret;
@@ -808,7 +808,7 @@ static int s2mu106_chg_set_property(struct power_supply *psy,
 			s2mu106_update_reg(charger->i2c, 0xE5, 0x08, 0x0F);
 			value.intval = SEC_BAT_FGSRC_SWITCHING_OFF;
 			psy_do_property("s2mu106-fuelgauge", set,
-				POWER_SUPPLY_EXT_PROP_INBAT_VOLTAGE_FGSRC_SWITCHING, value);
+				(enum power_supply_property)POWER_SUPPLY_EXT_PROP_INBAT_VOLTAGE_FGSRC_SWITCHING, value);
 
 			charger->input_current = s2mu106_get_input_current_limit(charger);
 			s2mu106_update_reg(charger->i2c, 0x19, 0x4E, 0x7F);
@@ -829,7 +829,7 @@ static int s2mu106_chg_set_property(struct power_supply *psy,
 
 			value.intval = SEC_BAT_FGSRC_SWITCHING_ON;
 			psy_do_property("s2mu106-fuelgauge", set,
-				POWER_SUPPLY_EXT_PROP_INBAT_VOLTAGE_FGSRC_SWITCHING, value);
+				(enum power_supply_property)POWER_SUPPLY_EXT_PROP_INBAT_VOLTAGE_FGSRC_SWITCHING, value);
 		}
 		break;
 	case POWER_SUPPLY_PROP_INPUT_VOLTAGE_REGULATION:
@@ -898,7 +898,7 @@ static int s2mu106_chg_set_property(struct power_supply *psy,
 
 				value.intval = SEC_BAT_FGSRC_SWITCHING_OFF;
 				psy_do_property("s2mu106-fuelgauge", set,
-					POWER_SUPPLY_EXT_PROP_INBAT_VOLTAGE_FGSRC_SWITCHING, value);
+					(enum power_supply_property)POWER_SUPPLY_EXT_PROP_INBAT_VOLTAGE_FGSRC_SWITCHING, value);
 
 				/* VBUS UVLO disable */
 				s2mu106_update_reg(charger->i2c, 0x39, 0xC0, 0xC0);
@@ -916,7 +916,7 @@ static int s2mu106_chg_set_property(struct power_supply *psy,
 			} else {
 				value.intval = SEC_BAT_FGSRC_SWITCHING_ON;
 				psy_do_property("s2mu106-fuelgauge", set,
-					POWER_SUPPLY_EXT_PROP_INBAT_VOLTAGE_FGSRC_SWITCHING, value);
+					(enum power_supply_property)POWER_SUPPLY_EXT_PROP_INBAT_VOLTAGE_FGSRC_SWITCHING, value);
 
 				pr_info("%s: Bypass exit for current measure\n", __func__);
 				s2mu106_update_reg(charger->i2c, S2MU106_CHG_CTRL0, 0x00, 0x0F);

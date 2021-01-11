@@ -2077,7 +2077,7 @@ start_calibration:
 			info->cap_info.cal_count = 0;
 		}else if (info->pdata->pat_function == PAT_CONTROL_PAT_MAGIC) {
 			/* pat_function(2) */
-			if((info->work_state == UPGRADE)){
+			if(info->work_state == UPGRADE){
 				if(info->cap_info.cal_count == 0)
 					info->cap_info.cal_count = PAT_MAGIC_NUMBER;
 				else

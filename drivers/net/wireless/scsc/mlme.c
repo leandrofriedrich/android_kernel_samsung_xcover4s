@@ -1176,7 +1176,7 @@ static int slsi_mlme_append_channel_list(struct slsi_dev                    *sde
 			return -EINVAL;
 		}
 		freq_fw_unit = 2 * ieee80211_channel_to_frequency(chann, (chann <= 14) ?
-								  NL80211_BAND_2GHZ : NL80211_BAND_5GHZ);
+								  IEEE80211_BAND_2GHZ : IEEE80211_BAND_5GHZ);
 		freq_fw_unit = cpu_to_le16(freq_fw_unit);
 		memcpy(p, &freq_fw_unit, sizeof(freq_fw_unit));
 
@@ -3290,7 +3290,7 @@ int slsi_mlme_set_cached_channels(struct slsi_dev *sdev, struct net_device *dev,
 				slsi_kfree_skb(req);
 				return -EINVAL;
 			}
-			freq_fw_unit = 2 * ieee80211_channel_to_frequency(channels[i], (channels[i] <= 14) ? NL80211_BAND_2GHZ : NL80211_BAND_5GHZ);
+			freq_fw_unit = 2 * ieee80211_channel_to_frequency(channels[i], (channels[i] <= 14) ? IEEE80211_BAND_2GHZ : IEEE80211_BAND_5GHZ);
 			freq_fw_unit = cpu_to_le16(freq_fw_unit);
 			memcpy(p, &freq_fw_unit, sizeof(freq_fw_unit));
 

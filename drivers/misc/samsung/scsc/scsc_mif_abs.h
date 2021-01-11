@@ -105,7 +105,7 @@ struct scsc_mif_abs {
 /**
  * Outgoing MIF Interrupt Hardware Controls
  */
-	void (*irq_bit_set)(struct scsc_mif_abs *interface, int bit_num, enum scsc_mif_abs_target target);
+	void (*irq_bit_set)(struct scsc_mif_abs *interface, int bit_num, unsigned int target);
 
 /**
  * Register handler for the interrupt from the

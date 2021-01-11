@@ -45,7 +45,7 @@ scsc_wifilogger-y += scsc_wifilogger_api.o \
 		     scsc_wifilogger_ring_connectivity.o \
 		     scsc_wifilogger_ring_wakelock.o \
 		     scsc_wifilogger_ring_pktfate.o
-
+CFLAGS_scsc_wifilogger_ring_connectivity.o += -Wno-varargs
 scsc_wifilogger-$(CONFIG_SCSC_WIFILOGGER_DEBUGFS) += scsc_wifilogger_debugfs.o
 scsc_wifilogger-$(CONFIG_SCSC_WIFILOGGER_TEST) += scsc_wifilogger_ring_test.o
 

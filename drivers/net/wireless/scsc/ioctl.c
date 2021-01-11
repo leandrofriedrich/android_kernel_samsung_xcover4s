@@ -373,7 +373,7 @@ static ssize_t slsi_p2p_ecsa(struct net_device *dev, char *command)
 #endif
 	if (channel == 165 && bandwidth != 20) {
 		bandwidth = 20;
-		chan_type = NL80211_CHAN_WIDTH_20;
+		chan_type = (enum nl80211_channel_type)NL80211_CHAN_WIDTH_20;
 	}
 	cfg80211_chandef_create(&chandef, chandef.chan, chan_type);
 	chan_info = slsi_get_chann_info(sdev, &chandef);
@@ -1377,7 +1377,7 @@ static ssize_t slsi_auto_chan_write(struct net_device *dev, char *command, int b
 	for (chan = 1; chan <= n_channels; chan++) {
 		int center_freq;
 
-		center_freq = ieee80211_channel_to_frequency(chan, NL80211_BAND_2GHZ);
+		center_freq = ieee80211_channel_to_frequency(chan, IEEE80211_BAND_2GHZ);
 		channels[count_channels] = ieee80211_get_channel(sdev->wiphy, center_freq);
 		if (!channels[count_channels])
 			SLSI_WARN(sdev, "channel number:%d invalid\n", chan);

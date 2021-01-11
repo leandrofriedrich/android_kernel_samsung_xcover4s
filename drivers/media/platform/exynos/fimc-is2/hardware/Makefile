@@ -11,6 +11,7 @@ obj-$(CONFIG_CAMERA_MC_SCALER_VER2_USE) += fimc-is-hw-mcscaler-v2.o
 ifeq ($(CONFIG_CAMERA_MC_SCALER_VER2_USE),y)
 obj-$(CONFIG_CAMERA_TDNR_VER1_USE) += fimc-is-hw-tdnr-v1.o
 obj-$(CONFIG_CAMERA_TDNR_VER2_USE) += fimc-is-hw-tdnr-v2.o
+CFLAGS_fimc-is-hw-tdnr-v2.o += -Wframe-larger-than=4096
 endif
 obj-$(CONFIG_DCP_V1_0) += fimc-is-hw-dcp.o
 obj-$(CONFIG_SRDZ_V1_0) += fimc-is-hw-srdz.o

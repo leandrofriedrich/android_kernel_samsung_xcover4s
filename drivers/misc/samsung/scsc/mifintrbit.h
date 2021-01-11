@@ -33,8 +33,7 @@ int mifintrbit_free_tohost(struct mifintrbit *intr, int which_bit);
 int mifintrbit_alloc_fromhost(struct mifintrbit *intr, enum scsc_mif_abs_target target);
 /* Free an interrupt bit associated with the target (R4/M4) -FROMHOST direction
  * Function returns the 0 if succedes , -EIO if error */
-int mifintrbit_free_fromhost(struct mifintrbit *intr, int which_bit, enum scsc_mif_abs_target target);
-
+int mifintrbit_free_fromhost(struct mifintrbit *intr, int which_bit, unsigned int target);
 
 struct mifintrbit {
 	void(*mifintrbit_irq_handler[MIFINTRBIT_NUM_INT]) (int irq, void *data);

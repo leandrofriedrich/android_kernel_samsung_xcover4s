@@ -56,9 +56,7 @@ firmware/abov/a96t346_a6elte.fw
 firmware/abov/a96t346_xcover4s.fw
 firmware/five/ffffffff000000000000000000000072.tlbin
 firmware/tsp_zinitix/zt7538_xcover4s.fw
-include/config/cc/stackprotector/regular.h
 include/config/kernel.release
-include/linux/get_static_t.h
 kernel/bounds.s
 kernel/config_data.gz
 kernel/config_data.h

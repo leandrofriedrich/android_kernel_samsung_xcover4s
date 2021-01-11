@@ -2002,7 +2002,7 @@ static policy_state usbpd_policy_dfp_vdm_response(struct policy_data *policy,
 
 	usbpd_manager_inform_event(pd_data, event);
 
-	if (&pd_data->phy_ops.get_power_role)
+	if (&pd_data->phy_ops.get_power_role != NULL)
 		pd_data->phy_ops.get_power_role(pd_data, &power_role);
 
 	if (power_role == USBPD_SINK)
@@ -2812,7 +2812,7 @@ void usbpd_policy_work(struct work_struct *work)
 			break;
 
 		default:
-			if (&pd_data->phy_ops.get_power_role)
+			if (&pd_data->phy_ops.get_power_role != NULL)
 				pd_data->phy_ops.get_power_role(pd_data,
 						&power_role);
 			pr_info("%s, %d\n", __func__, power_role);

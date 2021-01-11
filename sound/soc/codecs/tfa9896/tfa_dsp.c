@@ -854,7 +854,7 @@ tfa98xx_filter_mem(tfa98xx_handle_t dev,
 		case 0x72:
 		default:
 			/* unsupported case, possibly intermediate version */
-			return TFA_ERROR;
+			return (enum tfa98xx_dmem)TFA_ERROR;
 			_ASSERT(0);
 		}
 	}
@@ -979,7 +979,7 @@ enum tfa98xx_error tfa98xx_set_saam_use_case(int samstream)
 
 	if (devcount < 1) {
 		pr_err("No or wrong container file loaded\n");
-		return tfa_error_bad_param;
+		return (enum tfa98xx_error)tfa_error_bad_param;
 	}
 
 	for (dev = 0; dev < devcount; dev++)
@@ -1000,7 +1000,7 @@ enum tfa98xx_error tfa98xx_set_stream_state(int stream_state)
 
 	if (devcount < 1) {
 		pr_err("No or wrong container file loaded\n");
-		return tfa_error_bad_param;
+		return (enum tfa98xx_error) tfa_error_bad_param;
 	}
 
 	for (dev = 0; dev < devcount; dev++)

@@ -4768,7 +4768,7 @@ int slsi_set_mib_wifi_sharing_5ghz_channel(struct slsi_dev *sdev, u16 psid, int 
 			offset = offset + readbyte + 1;
 			readbyte = slsi_str_to_int(&arg[offset], &res);
 			/*if channel is not already present , then only add it*/
-			freq_to_be_checked = ieee80211_channel_to_frequency(res, NL80211_BAND_5GHZ);
+			freq_to_be_checked = ieee80211_channel_to_frequency(res, IEEE80211_BAND_5GHZ);
 			if (slsi_if_valid_wifi_sharing_channel(sdev, freq_to_be_checked) &&
 			    (!slsi_check_if_channel_restricted_already(sdev, res))) {
 				if ((sdev->num_5g_restricted_channels) > 24)
@@ -4781,7 +4781,7 @@ int slsi_set_mib_wifi_sharing_5ghz_channel(struct slsi_dev *sdev, u16 psid, int 
 		if (new_channels) {
 			for (i = 0; i < (sdev->num_5g_restricted_channels); i++) {
 				freq = ieee80211_channel_to_frequency(sdev->wifi_sharing_5g_restricted_channels[i],
-								      NL80211_BAND_5GHZ);
+								      IEEE80211_BAND_5GHZ);
 				for (j = 0; j < 25; j++) {
 					if (slsi_5ghz_all_channels[j] == freq) {
 						bit = j + 14;

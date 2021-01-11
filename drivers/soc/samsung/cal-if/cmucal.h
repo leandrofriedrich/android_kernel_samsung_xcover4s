@@ -399,28 +399,28 @@ struct cmucal_clkout {
 	unsigned int		en;
 };
 
-#define CMUCAL_VCLK(_id, _lut, _list, _seq, _switch) \
+#define CMUCAL_VCLK(_id, _lut, _slt, _list, _seq, _switch) \
 [_id & MASK_OF_ID] = {	\
 	.id		= _id,						\
 	.name		= #_id,						\
 	.lut		= _lut,						\
 	.list		= _list,					\
 	.seq		= _seq,						\
-	.num_rates	= (sizeof(_lut) / sizeof((_lut)[0])),		\
+	.num_rates	= _slt,						\
 	.num_list	= (sizeof(_list) / sizeof((_list)[0])),		\
 	.switch_info	= _switch,					\
 	.ops		= NULL,						\
 }
 
-#define CMUCAL_ACPM_VCLK(_id, _lut, _list, _seq, _switch, _margin_id)	\
+#define CMUCAL_ACPM_VCLK(_id, _lut, _slt, _list, _sls, _seq, _switch, _margin_id)	\
 [_id & MASK_OF_ID] = {	\
 	.id		= _id,						\
 	.name		= #_id,						\
 	.lut		= _lut,						\
 	.list		= _list,					\
 	.seq		= _seq,						\
-	.num_rates	= (sizeof(_lut) / sizeof((_lut)[0])),		\
-	.num_list	= (sizeof(_list) / sizeof((_list)[0])),		\
+	.num_rates	= _slt,		\
+	.num_list	= _sls,		\
 	.switch_info	= _switch,					\
 	.ops		= NULL,						\
 	.margin_id	= _margin_id,					\
@@ -470,7 +470,7 @@ struct cmucal_clkout {
 	.flock_time	= _ftime,					\
 }
 
-#define CLK_MUX(_id, _pids, _o, _so, _eo)		\
+#define CLK_MUX(_id, _pids, _sz, _o, _so, _eo)		\
 [_id & MASK_OF_ID] = {	\
 	.clk.id		= _id,				\
 	.clk.name	= #_id,				\
@@ -478,7 +478,7 @@ struct cmucal_clkout {
 	.clk.status_idx	= _so,				\
 	.clk.enable_idx	= _eo,				\
 	.pid		= _pids,			\
-	.num_parents	= (sizeof(_pids) / sizeof((_pids)[0])), \
+	.num_parents	= _sz, 				\
 }
 
 #define CLK_DIV(_id, _pid, _o, _so, _eo)		\
