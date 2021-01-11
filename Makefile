@@ -73,7 +73,7 @@ ifndef KBUILD_VERBOSE
   KBUILD_VERBOSE = 0
 endif
 
-ifeq ($(KBUILD_VERBOSE),1)
+ifeq ($(KBUILD_VERBOSE),0)
   quiet =
   Q =
 else
@@ -255,7 +255,8 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
 #ARCH		?= $(SUBARCH)
 #CROSS_COMPILE	?= $(CONFIG_CROSS_COMPILE:"%"=%)
 ARCH            ?= arm64
-CROSS_COMPILE   ?= ../../../prebuilts/gcc/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+CROSS_COMPILE   ?= ../../../prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+#CROSS_COMPILE   ?= ../../../prebuilts/gcc/aarch64-linux-android-4.9/bin/aarch64-linux-android-
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
@@ -390,6 +391,7 @@ LINUXINCLUDE    := \
 		-Iarch/$(hdr-arch)/include/generated \
 		$(if $(KBUILD_SRC), -I$(srctree)/include) \
 		-Iinclude \
+		   -I$(srctree) \
 		$(USERINCLUDE)
 
 KBUILD_CPPFLAGS := -D__KERNEL__
