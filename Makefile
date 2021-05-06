@@ -73,7 +73,7 @@ ifndef KBUILD_VERBOSE
   KBUILD_VERBOSE = 0
 endif
 
-ifeq ($(KBUILD_VERBOSE),0)
+ifeq ($(KBUILD_VERBOSE),1)
   quiet =
   Q =
 else
@@ -255,8 +255,7 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
 #ARCH		?= $(SUBARCH)
 #CROSS_COMPILE	?= $(CONFIG_CROSS_COMPILE:"%"=%)
 ARCH            ?= arm64
-CROSS_COMPILE   ?= ../../../prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
-#CROSS_COMPILE   ?= ../../../prebuilts/gcc/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+CROSS_COMPILE   ?= ../../../prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-androidkernel-
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
@@ -387,11 +386,10 @@ USERINCLUDE    := \
 # Needed to be compatible with the O= option
 LINUXINCLUDE    := \
 		-I$(srctree)/arch/$(hdr-arch)/include \
-		-Iarch/$(hdr-arch)/include/generated/uapi \
-		-Iarch/$(hdr-arch)/include/generated \
-		$(if $(KBUILD_SRC), -I$(srctree)/include) \
-		-Iinclude \
-		   -I$(srctree) \
+		-I$(srctree)/arch/$(hdr-arch)/include/generated/uapi \
+		-I$(srctree)/arch/$(hdr-arch)/include/generated \
+		-I$(srctree)/include \
+		-I$(srctree) \
 		$(USERINCLUDE)
 
 KBUILD_CPPFLAGS := -D__KERNEL__
@@ -481,8 +479,9 @@ KBUILD_CFLAGS += -DANDROID_MAJOR_VERSION=$(MAJOR_VERSION)
 # Example
 # SELINUX_DIR=$(shell $(CONFIG_SHELL) $(srctree)/scripts/find_matching_major.sh "$(srctree)" "security/selinux" "$(ANDROID_MAJOR_VERSION)")
 else
-export ANDROID_VERSION=990000
-KBUILD_CFLAGS += -DANDROID_VERSION=990000
+export ANDROID_VERSION=90000
+export ANDROID_MAJOR_VERSION=p
+KBUILD_CFLAGS += -DANDROID_VERSION=90000 -DANDROID_MAJOR_VERSION=p
 endif
 PHONY += replace_dirs
 replace_dirs:

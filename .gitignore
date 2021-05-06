@@ -31,7 +31,7 @@ scripts/selinux/genheaders/genheaders
 scripts/selinux/mdp/mdp
 scripts/sortextable
 scripts/mod/devicetable-offsets.s
-	
+
 .tmp_System.map
 .tmp_vmlinux1
 .tmp_vmlinux2
